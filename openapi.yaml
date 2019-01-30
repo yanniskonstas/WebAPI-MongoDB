@@ -1,0 +1,143 @@
+swagger: '2.0'
+info:
+  version: v1
+  title: Form3API
+host: konstas-1.appspot.com
+paths:
+  /api/Payments:
+    get:
+      tags:
+        - Payments
+      operationId: Get
+      consumes: []
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/Payment'
+    post:
+      tags:
+        - Payments
+      operationId: Add
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - application/json
+      parameters:
+        - name: payment
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/Payment'
+      responses:
+        '201':
+          description: Success
+          schema:
+            $ref: '#/definitions/Payment'
+        '400':
+          description: Bad Request
+  '/api/Payments/{id}':
+    get:
+      tags:
+        - Payments
+      operationId: GetPayment
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Payment'
+    put:
+      tags:
+        - Payments
+      operationId: Update
+      consumes:
+        - application/json-patch+json
+        - application/json
+        - text/json
+        - application/*+json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+        - name: newPayment
+          in: body
+          required: false
+          schema:
+            $ref: '#/definitions/Payment'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Payment'
+    delete:
+      tags:
+        - Payments
+      operationId: Delete
+      consumes: []
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Payment'
+definitions:
+  Payment:
+    type: object
+    properties:
+      id:
+        type: string
+      type:
+        type: string
+      version:
+        format: int32
+        type: integer
+      reference:
+        type: string
+      attributes:
+        $ref: '#/definitions/PaymentAttributes'
+      chargesInformation:
+        $ref: '#/definitions/PaymentChargesInformation'
+  PaymentAttributes:
+    type: object
+    properties:
+      amount:
+        format: double
+        type: number
+      currency:
+        type: string
+  PaymentChargesInformation:
+    type: object
+    properties:
+      bearerCode:
+        type: string
+      senderCharges:
+        uniqueItems: false
+        type: array
+        items:
+          $ref: '#/definitions/PaymentAttributes'
