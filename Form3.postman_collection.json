@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "0bd2fe10-1b69-4676-87ea-4c88e8ad8c6c",
+		"name": "Form3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Payments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0b38925-1bcd-4f18-8689-7dac3b306c66",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://konstas-1.appspot.com/api/Payments",
+					"protocol": "https",
+					"host": [
+						"konstas-1",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"api",
+						"Payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "c4a52504-164a-4907-9419-de14280994e6",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var jsonData = JSON.parse(responseBody);",
+							"var match = jsonData.id === \"5c506b661e305effdbd7aa95\";",
+							"",
+							"tests[\"Id match\"] = match; ",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://konstas-1.appspot.com/api/Payments/5c506b661e305effdbd7aa95",
+					"protocol": "https",
+					"host": [
+						"konstas-1",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"api",
+						"Payments",
+						"5c506b661e305effdbd7aa95"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Payments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39be705d-0536-4eac-bd7b-e8cdd31307db",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"var jsonData = JSON.parse(responseBody);",
+							"var match = jsonData.reference === \"CRUD Test: INSERT\";",
+							"tests[\"Reference match\"] = match; ",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"Payment\",\n    \"version\": 0,\n    \"reference\": \"CRUD Test: INSERT\",\n    \"attributes\": {\n        \"amount\": 1000,\n        \"currency\": \"GBP\"\n    },\n    \"chargesInformation\": {\n        \"bearerCode\": \"SHAR\",\n        \"senderCharges\": [\n            {\n                \"amount\": 800,\n                \"currency\": \"GBP\"\n            },\n            {\n                \"amount\": 200,\n                \"currency\": \"USD\"\n            }\n        ]\n    }\n}"
+				},
+				"url": {
+					"raw": "https://konstas-1.appspot.com/api/Payments",
+					"protocol": "https",
+					"host": [
+						"konstas-1",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"api",
+						"Payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d6ed1414-b274-4fbe-af30-98c010309c84",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"var jsonData = JSON.parse(responseBody);",
+							"var match = jsonData.id === \"5c5070f2a8ad1800a955284c\";",
+							"tests[\"Id match\"] = match; ",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"5c5070f2a8ad1800a955284c\",\n    \"type\": \"Payment\",\n    \"version\": 0,\n    \"reference\": \"CRUD Test: UPDATE\",\n    \"attributes\": {\n        \"amount\": 5500,\n        \"currency\": \"GBP\"\n    },\n    \"chargesInformation\": {\n        \"bearerCode\": \"SHAR\", \n        \"senderCharges\": [\n            {\n                \"amount\": 1000,\n                \"currency\": \"GBP\"\n            },\n            {\n                \"amount\": 5000,\n                \"currency\": \"USD\"\n            }\n        ]\n    }\n}"
+				},
+				"url": {
+					"raw": "https://konstas-1.appspot.com/api/Payments/5c5070f2a8ad1800a955284c",
+					"protocol": "https",
+					"host": [
+						"konstas-1",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"api",
+						"Payments",
+						"5c5070f2a8ad1800a955284c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Payment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1feff4ad-fa60-42ea-aedc-4e410bbca7f4",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://konstas-1.appspot.com/api/Payments/5c51a1de3e384800014f680b",
+					"protocol": "https",
+					"host": [
+						"konstas-1",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"api",
+						"Payments",
+						"5c51a1de3e384800014f680b"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
