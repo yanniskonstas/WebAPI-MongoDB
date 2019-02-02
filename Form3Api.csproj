@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All"/>
     <PackageReference Include="MongoDB.Driver" Version="2.7.3"/>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="*"/>
-    <None Include="app.yaml" CopyToOutputDirectory="Always" />
+    <PackageReference Include="Marvin.Cache.Headers" Version="3.0.0"/>
+    <None Include="app.yaml" CopyToOutputDirectory="Always"/>
   </ItemGroup>
 </Project>
-

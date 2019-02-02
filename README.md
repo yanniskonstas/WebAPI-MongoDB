@@ -14,3 +14,5 @@ https://github.com/yanniskonstas/WebAPI-MongoDB/blob/master/Form3.postman_collec
 *API Host*
 
 https://konstas-1.appspot.com/
+
+https://github.com/GoogleCloudPlatform/community/blob/master/tutorials/exposing-aspnet-webapi-using-dotnetcore-with-cloud-endpoints/index.md

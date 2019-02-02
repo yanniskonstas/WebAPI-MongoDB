@@ -32,6 +32,11 @@ namespace Form3Api
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "Form3API", Version = "v1" });
             });
+            services.AddHttpCacheHeaders(
+                (expirationModelOptions) => { expirationModelOptions.MaxAge = 66; },
+                (validationModelOptions) => { validationModelOptions.MustRevalidate = true; }                
+            );
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +56,8 @@ namespace Form3Api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Form3API V1");                
             });            
             app.UseHttpsRedirection();
+            app.UseResponseCaching();
+            app.UseHttpCacheHeaders();
             app.UseMvc();
         }
     }
