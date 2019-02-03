@@ -9,7 +9,7 @@ using Form3Api.Models;
 namespace Form3Api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/payments")]
     [ApiController]
     public class PaymentsController : ControllerBase
     {
@@ -20,7 +20,6 @@ namespace Form3Api.Controllers
 
         // GET api/payments
         [HttpGet]
-        [HttpHead]
         public ActionResult<IEnumerable<Payment>> Get()
         {
             //return _paymentRepository.Get().ToList();
@@ -71,7 +70,14 @@ namespace Form3Api.Controllers
         public ActionResult Options() {
             Response.Headers.Add("Allow", "DELETE,GET,OPTIONS,POST,PUT");
             return new OkResult();
-        }              
+        }     
+
+        [HttpHead]
+        public ActionResult<IEnumerable<Payment>> Head()
+        {
+            var payments = _paymentRepository.Get();
+            return new JsonResult(payments);
+        }         
 
     }
 }

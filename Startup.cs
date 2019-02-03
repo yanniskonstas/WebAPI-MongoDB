@@ -39,6 +39,7 @@ namespace Form3Api
             );
             services.AddResponseCaching();
             services.AddMemoryCache();
+            
             services.Configure<IpRateLimitOptions>((options) =>
             {
                 options.GeneralRules = new System.Collections.Generic.List<RateLimitRule>()
@@ -59,7 +60,8 @@ namespace Form3Api
             });
 
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
-            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();        }
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();        
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

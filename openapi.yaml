@@ -4,7 +4,7 @@ info:
   title: Form3API
 host: konstas-1.appspot.com
 paths:
-  /api/Payments:
+  /api/payments:
     get:
       tags:
         - Payments
@@ -45,7 +45,34 @@ paths:
             $ref: '#/definitions/Payment'
         '400':
           description: Bad Request
-  '/api/Payments/{id}':
+    options:
+      tags:
+        - Payments
+      operationId: Options
+      consumes: []
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: Success
+    head:
+      tags:
+        - Payments
+      operationId: Head
+      consumes: []
+      produces:
+        - application/json
+      parameters: []
+      responses:
+        '200':
+          description: Success
+          schema:
+            uniqueItems: false
+            type: array
+            items:
+              $ref: '#/definitions/Payment'
+  '/api/payments/{id}':
     get:
       tags:
         - Payments

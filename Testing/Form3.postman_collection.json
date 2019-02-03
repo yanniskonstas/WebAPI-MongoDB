@@ -30,7 +30,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://konstas-1.appspot.com/api/Payments",
+					"raw": "https://konstas-1.appspot.com/api/payments",
 					"protocol": "https",
 					"host": [
 						"konstas-1",
@@ -39,7 +39,7 @@
 					],
 					"path": [
 						"api",
-						"Payments"
+						"payments"
 					]
 				}
 			},
@@ -74,7 +74,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://konstas-1.appspot.com/api/Payments/5c506b661e305effdbd7aa95",
+					"raw": "https://konstas-1.appspot.com/api/payments/5c506b661e305effdbd7aa95",
 					"protocol": "https",
 					"host": [
 						"konstas-1",
@@ -83,7 +83,7 @@
 					],
 					"path": [
 						"api",
-						"Payments",
+						"payments",
 						"5c506b661e305effdbd7aa95"
 					]
 				}
@@ -125,7 +125,7 @@
 					"raw": "{\n    \"type\": \"Payment\",\n    \"version\": 0,\n    \"reference\": \"CRUD Test: INSERT\",\n    \"attributes\": {\n        \"amount\": 1000,\n        \"currency\": \"GBP\"\n    },\n    \"chargesInformation\": {\n        \"bearerCode\": \"SHAR\",\n        \"senderCharges\": [\n            {\n                \"amount\": 800,\n                \"currency\": \"GBP\"\n            },\n            {\n                \"amount\": 200,\n                \"currency\": \"USD\"\n            }\n        ]\n    }\n}"
 				},
 				"url": {
-					"raw": "https://konstas-1.appspot.com/api/Payments",
+					"raw": "https://konstas-1.appspot.com/api/payments",
 					"protocol": "https",
 					"host": [
 						"konstas-1",
@@ -134,7 +134,7 @@
 					],
 					"path": [
 						"api",
-						"Payments"
+						"payments"
 					]
 				}
 			},
@@ -175,7 +175,7 @@
 					"raw": "{\n    \"id\": \"5c5070f2a8ad1800a955284c\",\n    \"type\": \"Payment\",\n    \"version\": 0,\n    \"reference\": \"CRUD Test: UPDATE\",\n    \"attributes\": {\n        \"amount\": 5500,\n        \"currency\": \"GBP\"\n    },\n    \"chargesInformation\": {\n        \"bearerCode\": \"SHAR\", \n        \"senderCharges\": [\n            {\n                \"amount\": 1000,\n                \"currency\": \"GBP\"\n            },\n            {\n                \"amount\": 5000,\n                \"currency\": \"USD\"\n            }\n        ]\n    }\n}"
 				},
 				"url": {
-					"raw": "https://konstas-1.appspot.com/api/Payments/5c5070f2a8ad1800a955284c",
+					"raw": "https://konstas-1.appspot.com/api/payments/5c5070f2a8ad1800a955284c",
 					"protocol": "https",
 					"host": [
 						"konstas-1",
@@ -184,7 +184,7 @@
 					],
 					"path": [
 						"api",
-						"Payments",
+						"payments",
 						"5c5070f2a8ad1800a955284c"
 					]
 				}
@@ -222,7 +222,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://konstas-1.appspot.com/api/Payments/5c51a1de3e384800014f680b",
+					"raw": "https://konstas-1.appspot.com/api/payments/5c51a1de3e384800014f680b",
 					"protocol": "https",
 					"host": [
 						"konstas-1",
@@ -231,7 +231,7 @@
 					],
 					"path": [
 						"api",
-						"Payments",
+						"payments",
 						"5c51a1de3e384800014f680b"
 					]
 				}
