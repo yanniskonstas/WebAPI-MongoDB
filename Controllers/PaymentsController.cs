@@ -20,6 +20,7 @@ namespace Form3Api.Controllers
 
         // GET api/payments
         [HttpGet]
+        [HttpHead]
         public ActionResult<IEnumerable<Payment>> Get()
         {
             //return _paymentRepository.Get().ToList();
@@ -64,7 +65,13 @@ namespace Form3Api.Controllers
             if (payment == null) return NotFound();            
             _paymentRepository.Delete(id);
             return NoContent();
-        }                  
+        }
+
+        [HttpOptions]
+        public ActionResult Options() {
+            Response.Headers.Add("Allow", "DELETE,GET,OPTIONS,POST,PUT");
+            return new OkResult();
+        }              
 
     }
 }

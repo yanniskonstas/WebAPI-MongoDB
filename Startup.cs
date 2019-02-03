@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Form3Api.Services;
 using Swashbuckle.AspNetCore.Swagger;
+using AspNetCoreRateLimit;
 
 namespace Form3Api
 {
@@ -33,11 +34,32 @@ namespace Form3Api
                 c.SwaggerDoc("v1", new Info { Title = "Form3API", Version = "v1" });
             });
             services.AddHttpCacheHeaders(
-                (expirationModelOptions) => { expirationModelOptions.MaxAge = 66; },
+                (expirationModelOptions) => { expirationModelOptions.MaxAge = 60; },
                 (validationModelOptions) => { validationModelOptions.MustRevalidate = true; }                
             );
             services.AddResponseCaching();
-        }
+            services.AddMemoryCache();
+            services.Configure<IpRateLimitOptions>((options) =>
+            {
+                options.GeneralRules = new System.Collections.Generic.List<RateLimitRule>()
+                {
+                    new RateLimitRule()
+                    {
+                        Endpoint = "*",
+                        Limit = 1000,
+                        Period = "5m"
+                    },
+                    new RateLimitRule()
+                    {
+                        Endpoint = "*",
+                        Limit = 200,
+                        Period = "10s"
+                    }
+                };
+            });
+
+            services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -57,6 +79,7 @@ namespace Form3Api
             });            
             app.UseHttpsRedirection();
             app.UseResponseCaching();
+            app.UseIpRateLimiting();
             app.UseHttpCacheHeaders();
             app.UseMvc();
         }
