@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Form3Api.Services;
 using Swashbuckle.AspNetCore.Swagger;
 using AspNetCoreRateLimit;
+using Library.API.Helpers;
 
 namespace Form3Api
 {
@@ -30,6 +31,7 @@ namespace Form3Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();            
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info { Title = "Form3API", Version = "v1" });
             });
@@ -58,6 +60,15 @@ namespace Form3Api
                     }
                 };
             });
+
+            AutoMapper.Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Entities.User, Models.UserDto>()
+                    .ForMember(dest => dest.Name, opt => opt.MapFrom(src =>
+                    $"{src.FirstName} {src.LastName}"))
+                    .ForMember(dest => dest.Age, opt => opt.MapFrom(src =>
+                    src.DateOfBirth.GetCurrentAge(src.DateOfDeath)));
+            });            
 
             services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();        
